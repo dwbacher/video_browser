@@ -1,14 +1,22 @@
 import React from 'react';
 import VideoCard from './VideoCard';
+import { connect } from 'react-redux';
 
-const VideoList = ({ videos, onVideoSelect }) => {
+class VideoList extends React.Component {
 
-  const videoCards = videos.map(video => {
-    return <VideoCard key={video.id.videoId} onVideoSelect={onVideoSelect} video={video} />;
-  });
+  render() {
+    const videoCards = this.props.videos.map(video => {
+      return <VideoCard key={video.id.videoId} video={video} />;
+    });
 
-  return <div className="ui relaxed divided list">{videoCards}</div>;
+    return <div className="ui relaxed divided list">{videoCards}</div>;
+  }
 
-};
+}
 
-export default VideoList;
+const mapStateToProps = state => {
+  return { videos: state.videos };
+}
+
+export default connect(mapStateToProps)(VideoList);
+

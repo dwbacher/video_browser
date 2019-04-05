@@ -1,16 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { enterSearchTerm } from '../actions';
 
 class SearchBar extends React.Component {
 
-  state = { term: '' };
-
   onFormSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state.term);
+    this.props.onSubmit(this.props.searchTerm);
   }
 
   onInputChange = e => {
-    this.setState({ term: e.target.value });
+    this.props.enterSearchTerm( e.target.value );
   }
 
   render() {
@@ -20,7 +20,7 @@ class SearchBar extends React.Component {
           <div className="field">
             <label>Video Search</label>
             <input type="text"
-                   value={this.state.term}
+                   value={this.props.searchTerm}
                    onChange={this.onInputChange} />
           </div>
         </form>
@@ -30,4 +30,8 @@ class SearchBar extends React.Component {
 
 }
 
-export default SearchBar;
+const mapStateToProps = state => {
+  return { searchTerm: state.searchTerm };
+}
+
+export default connect(mapStateToProps, { enterSearchTerm })(SearchBar);

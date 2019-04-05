@@ -3,18 +3,14 @@ import SearchBar from './SearchBar';
 import youtube from '../apis/youtube';
 import VideoList from './VideoList';
 import VideoScreen from './VideoScreen';
+import { selectVideo, listVideos } from "../actions";
+import {connect} from "react-redux";
 
 class App extends React.Component {
-
-  state = {
-    videos: [],
-    selectedVideo: null
-  };
 
   componentDidMount() {
     this.onSearchSubmit('news');
   }
-
 
   onSearchSubmit = async term => {
     const response = await youtube.get('/search', {
@@ -23,16 +19,10 @@ class App extends React.Component {
       }
     });
 
-    // Set the video results in the state prop
-    this.setState({
-      videos: response.data.items,
-      selectedVideo: response.data.items[0]
-    });
-  };
+    this.props.selectVideo(response.data.items[0]);
+    this.props.listVideos(response.data.items);
 
-  onVideoSelect = (video) => {
-    this.setState({selectedVideo: video})
-  }
+  };
 
   render() {
     return(
@@ -41,12 +31,10 @@ class App extends React.Component {
         <div className="ui grid">
           <div className="ui row">
             <div className="eleven wide column">
-              <VideoScreen video={this.state.selectedVideo}/>
+              <VideoScreen video={this.props.selectedVideo}/>
             </div>
             <div className="five wide column">
-              <VideoList
-                onVideoSelect={this.onVideoSelect}
-                videos={this.state.videos} />
+              <VideoList />
             </div>
           </div>
         </div>
@@ -55,4 +43,9 @@ class App extends React.Component {
   }
 }
 
-export default App;
+
+const mapStateToProps = state => {
+  return { selectedVideo: state.selectedVideo, videos: state.videos };
+}
+
+export default connect(mapStateToProps, { selectVideo, listVideos })(App);
