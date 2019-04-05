@@ -6,6 +6,7 @@ A React app that demonstrate the following principles:
 
 * Class-based vs Functional-based components
 * Passing properties to nested components
+
 ~~* The state system~~
 * Redux state (reducers and actions)
 * Event handling
