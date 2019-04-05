@@ -3,8 +3,8 @@ import SearchBar from './SearchBar';
 import youtube from '../apis/youtube';
 import VideoList from './VideoList';
 import VideoScreen from './VideoScreen';
-import { selectVideo, listVideos } from "../actions";
 import {connect} from "react-redux";
+import { selectVideo, listVideos } from "../actions";
 
 class App extends React.Component {
 
@@ -31,7 +31,7 @@ class App extends React.Component {
         <div className="ui grid">
           <div className="ui row">
             <div className="eleven wide column">
-              <VideoScreen video={this.props.selectedVideo}/>
+              <VideoScreen />
             </div>
             <div className="five wide column">
               <VideoList />
