@@ -9,7 +9,7 @@ A React app that demonstrate the following principles:
 
 ~~* The state system~~
 * Redux state (reducers, actions, action creators)
-* Event handling
+* Event handlers
 * Callbacks
 
 It uses semantic-ui styling and grid system.
