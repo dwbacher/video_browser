@@ -12,6 +12,6 @@ A React app that demonstrate the following principles:
 * Event handlers
 * Callbacks
 
-It uses semantic-ui styling and grid system.
+* Semantic-ui styling and grid system.
 
-It uses axios to interface with the youtube data API.
+* Axios API calls.
