@@ -8,7 +8,7 @@ A React app that demonstrate the following principles:
 * Passing properties to nested components
 
 ~~* The state system~~
-* Redux state (reducers and actions)
+* Redux state (reducers, actions, action creators)
 * Event handling
 * Callbacks
 
